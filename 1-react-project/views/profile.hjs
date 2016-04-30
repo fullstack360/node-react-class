@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' />
+
+
+  </head>
+
+  <body style="background:#f9f9f9">
+  	<div class="container">
+
+	    <h1>Create Profile</h1>
+
+	    <form action="/api/profile" method="POST">
+	    	<input class="form-control" type="text" name="firstName" placeholder="First Name" /><br />
+	    	<input class="form-control" type="text" name="lastName" placeholder="Last Name" /><br />
+	    	<input class="form-control" type="text" name="team" placeholder="Team" /><br />
+	    	<input class="form-control" type="text" name="number" placeholder="Number" /><br />
+	    	<button class="btn btn-success btn-lg" type="submit">Submit</button>
+	    </form>
+
+
+  	</div>
+
+  </body>
+</html>

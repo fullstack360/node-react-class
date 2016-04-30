@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' />
+
+
+  </head>
+
+  <body style="background:#f9f9f9">
+  	<div class="container">
+
+	    <h1>Create Stadium</h1>
+
+	    <form action="/api/stadium" method="POST">
+	    	<input class="form-control" type="text" name="name" placeholder="Name" /><br />
+	    	<input class="form-control" type="text" name="city" placeholder="City" /><br />
+	    	<input class="form-control" type="text" name="team" placeholder="Team" /><br />
+        <input class="form-control" type="text" name="capacity" placeholder="Capacity" /><br />
+
+	    	<button class="btn btn-success btn-lg" type="submit">Submit</button>
+	    </form>
+
+
+  	</div>
+
+  </body>
+</html>
