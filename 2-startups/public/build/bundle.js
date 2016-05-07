@@ -20214,21 +20214,28 @@
 	var StartupList = function (_Component) {
 		_inherits(StartupList, _Component);
 	
-		function StartupList() {
+		function StartupList(props, context) {
 			_classCallCheck(this, StartupList);
 	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(StartupList).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(StartupList).call(this, props, context));
+	
+			_this.state = {
+				startups: [{ name: 'Plated', city: 'San Francisco', url: 'www.plated.com' }, { name: 'YikYak', city: 'Atlanta', url: 'www.yikyak.com' }, { name: 'Seat Geek', city: 'New York', url: 'www.seatgeek.com' }, { name: 'Google', city: 'Mountain View', url: 'www.google.com' }]
+			};
+			return _this;
 		}
 	
 		_createClass(StartupList, [{
 			key: 'render',
 			value: function render() {
+				var list = this.state.startups.map(function (startup, i) {
+					return _react2.default.createElement(_ListItem2.default, { key: i, startup: startup });
+				});
+	
 				return _react2.default.createElement(
 					'ol',
 					null,
-					_react2.default.createElement(_ListItem2.default, { startup: 'Lyft' }),
-					_react2.default.createElement(_ListItem2.default, { startup: 'Uber' }),
-					_react2.default.createElement(_ListItem2.default, { startup: 'Blue Apron' })
+					list
 				);
 			}
 		}]);
@@ -20277,7 +20284,13 @@
 				return _react2.default.createElement(
 					'li',
 					null,
-					this.props.startup
+					_react2.default.createElement(
+						'a',
+						{ target: '_blank', href: 'http://' + this.props.startup.url },
+						this.props.startup.name
+					),
+					', ',
+					this.props.startup.city
 				);
 			}
 		}]);

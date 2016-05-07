@@ -4,7 +4,9 @@ class ListItem extends Component {
 
 	render(){
 		return (
-			<li>{ this.props.startup }</li>
+			<li>
+				<a target="_blank" href={'http://'+this.props.startup.url}>{ this.props.startup.name }</a>, {this.props.startup.city}
+			</li>
 		)
 	}
 }
