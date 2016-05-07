@@ -19,7 +19,7 @@ class StartupList extends Component {
 
 	render(){
 		var list = this.state.startups.map(function(startup, i){
-			return <ListItem key={i} startup={startup} />
+			return <ListItem key={i} entity={startup} />
 
 		})
 
