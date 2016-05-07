@@ -24,9 +24,11 @@ class StartupList extends Component {
 		})
 
 		return (
-			<ol>
-				{ list }
-			</ol>
+			<div className="list-box">
+				<ol>
+					{ list }
+				</ol>
+			</div>
 		)
 	}
 }

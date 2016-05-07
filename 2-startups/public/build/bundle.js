@@ -20238,9 +20238,13 @@
 				});
 	
 				return _react2.default.createElement(
-					'ol',
-					null,
-					list
+					'div',
+					{ className: 'list-box' },
+					_react2.default.createElement(
+						'ol',
+						null,
+						list
+					)
 				);
 			}
 		}]);
@@ -20254,7 +20258,7 @@
 /* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -20284,27 +20288,27 @@
 		}
 	
 		_createClass(ListItem, [{
-			key: "render",
+			key: 'render',
 			value: function render() {
 				var content = "";
 				if (this.props.entity.url == null) {
-					content = this.props.entity.name;
+					content = this.props.entity.firstName + ' ' + this.props.entity.lastName;
 				} else {
 					content = _react2.default.createElement(
-						"div",
+						'div',
 						null,
 						_react2.default.createElement(
-							"a",
-							{ target: "_blank", href: 'http://' + this.props.entity.url },
+							'a',
+							{ style: { textDecoration: 'none', marginRight: 36 }, target: '_blank', href: 'http://' + this.props.entity.url },
 							this.props.entity.name
 						),
-						", ",
+						', ',
 						this.props.entity.city
 					);
 				}
 	
 				return _react2.default.createElement(
-					"li",
+					'li',
 					null,
 					content
 				);
@@ -20366,9 +20370,13 @@
 				});
 	
 				return _react2.default.createElement(
-					'ol',
-					null,
-					list
+					'div',
+					{ className: 'list-box' },
+					_react2.default.createElement(
+						'ol',
+						null,
+						list
+					)
 				);
 			}
 		}]);
