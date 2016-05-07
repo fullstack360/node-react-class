@@ -8,10 +8,10 @@ class ProfileList extends Component {
 
 		this.state = {
 			profiles: [
-				{firstName:'Donald', lastName:'Trump'},
-				{firstName:'Hillary', lastName:'Clinton'},
-				{firstName:'Bernie', lastName:'Sanders'},
-				{firstName:'Barack', lastName:'Obama'}
+				{firstName:'Donald', lastName:'Trump', party:'r'},
+				{firstName:'Hillary', lastName:'Clinton', party:'d'},
+				{firstName:'Bernie', lastName:'Sanders', party:'d'},
+				{firstName:'Barack', lastName:'Obama', party:'d'}
 			]
 		}
 	}

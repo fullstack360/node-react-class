@@ -20292,7 +20292,14 @@
 			value: function render() {
 				var content = "";
 				if (this.props.entity.url == null) {
-					content = this.props.entity.firstName + ' ' + this.props.entity.lastName;
+					// TERNARY:
+					var color = this.props.entity.party == 'd' ? 'blue' : 'red';
+	
+					content = _react2.default.createElement(
+						'span',
+						{ style: { color: color } },
+						this.props.entity.firstName + ' ' + this.props.entity.lastName
+					);
 				} else {
 					content = _react2.default.createElement(
 						'div',
@@ -20357,7 +20364,7 @@
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ProfileList).call(this, props, context));
 	
 			_this.state = {
-				profiles: [{ firstName: 'Donald', lastName: 'Trump' }, { firstName: 'Hillary', lastName: 'Clinton' }, { firstName: 'Bernie', lastName: 'Sanders' }, { firstName: 'Barack', lastName: 'Obama' }]
+				profiles: [{ firstName: 'Donald', lastName: 'Trump', party: 'r' }, { firstName: 'Hillary', lastName: 'Clinton', party: 'd' }, { firstName: 'Bernie', lastName: 'Sanders', party: 'd' }, { firstName: 'Barack', lastName: 'Obama', party: 'd' }]
 			};
 			return _this;
 		}
