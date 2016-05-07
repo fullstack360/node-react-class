@@ -3,16 +3,13 @@ var Startup = require('../models/Startup')
 module.exports = {
 
 	get: function(params, completion){
-
 		Startup.find(params, function(err, startups){
 			if (err){
 				completion(err, null)
 				return;
 			}
 
-
 			completion(null, startups)
-
 			return
 		})
 	},
