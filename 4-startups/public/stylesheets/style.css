@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.list-box {
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	padding: 24px;
+	margin-bottom: 24px;
+}
