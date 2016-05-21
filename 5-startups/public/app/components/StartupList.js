@@ -42,13 +42,6 @@ class StartupList extends Component {
 
 //			console.log('STARTUP CREATED: '+JSON.stringify(response))
 			store.dispatch(actions.startupCreated(response.result))
-			_this.setState({
-				startup: {
-					name:'',
-					founder:'',
-					url:''
-				}
-			})
 		})
 	}
 

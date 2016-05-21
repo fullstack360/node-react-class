@@ -24,8 +24,11 @@ export default function(state = initialState, action){
 		case constants.STARTUP_CREATED:
 			var newState = Object.assign({}, state);
 			var startup = action.startup
-			newState.startupsArray.push(startup)
-			newState.startups[startup._id] = startup
+
+			var s = Object.assign([], newState.startupsArray);
+			s.push(startup)
+			newState['startupsArray'] = s
+
 			return newState;
 
 		default:

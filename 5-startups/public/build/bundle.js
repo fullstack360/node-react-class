@@ -20468,13 +20468,6 @@
 	
 					//			console.log('STARTUP CREATED: '+JSON.stringify(response))
 					_store2.default.dispatch(_actions2.default.startupCreated(response.result));
-					_this.setState({
-						startup: {
-							name: '',
-							founder: '',
-							url: ''
-						}
-					});
 				});
 			}
 		}, {
@@ -24092,8 +24085,11 @@
 			case _constants2.default.STARTUP_CREATED:
 				var newState = Object.assign({}, state);
 				var startup = action.startup;
-				newState.startupsArray.push(startup);
-				newState.startups[startup._id] = startup;
+	
+				var s = Object.assign([], newState.startupsArray);
+				s.push(startup);
+				newState['startupsArray'] = s;
+	
 				return newState;
 	
 			default:
