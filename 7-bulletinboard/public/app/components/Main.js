@@ -6,7 +6,7 @@ class Main extends Component {
 	render(){
 		return (
 			<div>
-				HELLO REACT!
+				MAIN Component!
 				<Communities />
 			</div>
 		)

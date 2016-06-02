@@ -20410,7 +20410,7 @@
 				return _react2.default.createElement(
 					'div',
 					null,
-					'HELLO REACT!',
+					'MAIN Component!',
 					_react2.default.createElement(_Communities2.default, null)
 				);
 			}
