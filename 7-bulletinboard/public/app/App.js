@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Communities from './components/Communities'
+import Main from './components/Main'
 import store from './stores/store'
 import { Provider } from 'react-redux'
 
@@ -8,10 +8,7 @@ class App extends Component {
 
 	render(){
 		return (
-			<div>
-				HELLO REACT!
-				<Communities />
-			</div>
+			<Main />
 		)
 	}
 }
