@@ -13,42 +13,24 @@ var _react = require("react");
 var React = _interopRequire(_react);
 
 var Component = _react.Component;
-var Communities = _interopRequire(require("../components/Communities"));
-
-var Register = _interopRequire(require("../components/layout/Register"));
-
-var Main = (function (Component) {
-	function Main() {
-		_classCallCheck(this, Main);
+var Register = (function (Component) {
+	function Register() {
+		_classCallCheck(this, Register);
 
 		if (Component != null) {
 			Component.apply(this, arguments);
 		}
 	}
 
-	_inherits(Main, Component);
+	_inherits(Register, Component);
 
-	_prototypeProperties(Main, null, {
-		componentDidMount: {
-			value: function componentDidMount() {
-				console.log("MAIN: " + this.props.page);
-			},
-			writable: true,
-			configurable: true
-		},
+	_prototypeProperties(Register, null, {
 		render: {
 			value: function render() {
-				var content = null;
-				var page = this.props.page;
-				if (page == "home") content = React.createElement(Communities, null);
-
-				if (page == "register") content = React.createElement(Register, null);
-
-
 				return React.createElement(
 					"div",
 					null,
-					content
+					"Register Page"
 				);
 			},
 			writable: true,
@@ -56,7 +38,7 @@ var Main = (function (Component) {
 		}
 	});
 
-	return Main;
+	return Register;
 })(Component);
 
-module.exports = Main;
+module.exports = Register;

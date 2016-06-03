@@ -9,11 +9,21 @@ var ServerApp = require('../public/build/es5/ServerApp');
 
 router.get('/', function(req, res, next) {
 
-
 	// convert react code into HTML:
 	var html = ReactDOMServer.renderToString(React.createElement(ServerApp, {page:'home'}));
-    res.render('index', { react: html });
+    res.render('index', {react:html});
 
 });
+
+
+router.get('/:page', function(req, res, next) {
+	var page = req.params.page
+
+	// convert react code into HTML:
+	var html = ReactDOMServer.renderToString(React.createElement(ServerApp, {page:page}));
+    res.render(page, {react:html});
+
+});
+
 
 module.exports = router;

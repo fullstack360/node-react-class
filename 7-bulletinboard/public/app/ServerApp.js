@@ -9,7 +9,7 @@ class App extends Component {
 	render(){
 		return (
 			<Provider store={store}>
-				<Main />
+				<Main page={this.props.page} />
 			</Provider>
 		)
 	}

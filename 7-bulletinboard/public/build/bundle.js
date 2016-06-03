@@ -77,16 +77,38 @@
 	var App = function (_Component) {
 		_inherits(App, _Component);
 	
-		function App() {
+		function App(props, context) {
 			_classCallCheck(this, App);
 	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props, context));
+	
+			_this.state = {
+				page: 'home'
+			};
+	
+			return _this;
 		}
 	
 		_createClass(App, [{
+			key: 'componentWillMount',
+			value: function componentWillMount() {
+				var pathname = window.location.pathname;
+				var path = pathname.replace('/', ''); // http://localhost:3000/
+	
+				var page = 'home';
+				if (path.length > 0) {
+					var parts = path.split('/');
+					page = parts[0];
+				}
+	
+				this.setState({
+					page: page
+				});
+			}
+		}, {
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement(_Main2.default, null);
+				return _react2.default.createElement(_Main2.default, { page: this.state.page });
 			}
 		}]);
 	
@@ -20387,6 +20409,10 @@
 	
 	var _Communities2 = _interopRequireDefault(_Communities);
 	
+	var _Register = __webpack_require__(208);
+	
+	var _Register2 = _interopRequireDefault(_Register);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20405,13 +20431,23 @@
 		}
 	
 		_createClass(Main, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				console.log('MAIN: ' + this.props.page);
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+				var content = null;
+				var page = this.props.page;
+				if (page == 'home') content = _react2.default.createElement(_Communities2.default, null);
+	
+				if (page == 'register') content = _react2.default.createElement(_Register2.default, null);
+	
 				return _react2.default.createElement(
 					'div',
 					null,
-					'MAIN Component!',
-					_react2.default.createElement(_Communities2.default, null)
+					content
 				);
 			}
 		}]);
@@ -24084,6 +24120,55 @@
 	module.exports = invariant;
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Register = function (_Component) {
+		_inherits(Register, _Component);
+	
+		function Register() {
+			_classCallCheck(this, Register);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Register).apply(this, arguments));
+		}
+	
+		_createClass(Register, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					'Register Page'
+				);
+			}
+		}]);
+	
+		return Register;
+	}(_react.Component);
+	
+	exports.default = Register;
 
 /***/ }
 /******/ ]);

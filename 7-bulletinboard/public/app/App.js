@@ -6,9 +6,32 @@ import { Provider } from 'react-redux'
 
 class App extends Component {
 
+	constructor(props, context){
+		super(props, context)
+		this.state = {
+			page: 'home'
+		}
+
+	}
+
+	componentWillMount(){
+		var pathname = window.location.pathname
+		var path = pathname.replace('/', ''); // http://localhost:3000/
+
+		var page = 'home'
+		if (path.length > 0){
+			var parts = path.split('/')
+			page = parts[0]
+		}
+
+		this.setState({
+			page: page
+		})
+	}
+
 	render(){
 		return (
-			<Main />
+			<Main page={this.state.page} />
 		)
 	}
 }
