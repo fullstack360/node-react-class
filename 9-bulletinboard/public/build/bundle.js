@@ -20476,12 +20476,6 @@
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(_Nav2.default, null),
-					_react2.default.createElement(
-						'section',
-						{ id: 'slider', style: { background: 'url("/images/nyc.jpg") center', overflow: 'visible' }, 'data-height-lg': '450', 'data-height-md': '450', 'data-height-sm': '600', 'data-height-xs': '600', 'data-height-xxs': '600' },
-						_react2.default.createElement('br', null)
-					),
 					content,
 					_react2.default.createElement(_Footer2.default, null)
 				);
@@ -20526,6 +20520,10 @@
 	var _CommunityPreview = __webpack_require__(209);
 	
 	var _CommunityPreview2 = _interopRequireDefault(_CommunityPreview);
+	
+	var _Nav = __webpack_require__(213);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -20601,42 +20599,98 @@
 	
 				return _react2.default.createElement(
 					'div',
-					{ className: 'container clearfix' },
+					null,
+					_react2.default.createElement(_Nav2.default, null),
 					_react2.default.createElement(
-						'div',
-						{ className: 'col_three_fifth bothsidebar nobottommargin' },
+						'section',
+						{ id: 'slider', style: { background: 'url("/images/nyc.jpg") center', overflow: 'visible' }, 'data-height-lg': '450', 'data-height-md': '450', 'data-height-sm': '600', 'data-height-xs': '600', 'data-height-xxs': '600' },
+						_react2.default.createElement('br', null)
+					),
+					_react2.default.createElement(
+						'section',
+						{ id: 'content' },
 						_react2.default.createElement(
 							'div',
-							{ className: 'fancy-title title-border' },
+							{ className: 'content-wrap' },
 							_react2.default.createElement(
-								'h3',
-								null,
-								'Communities'
+								'div',
+								{ className: 'container clearfix' },
+								_react2.default.createElement(
+									'div',
+									{ className: 'col_three_fifth bothsidebar nobottommargin' },
+									_react2.default.createElement(
+										'div',
+										{ className: 'fancy-title title-border' },
+										_react2.default.createElement(
+											'h3',
+											null,
+											'Communities'
+										)
+									),
+									_react2.default.createElement(
+										'div',
+										{ id: 'posts', className: 'events small-thumbs' },
+										list
+									)
+								),
+								_react2.default.createElement(
+									'h3',
+									null,
+									'Sign Up'
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'col_one_third nobottommargin' },
+									_react2.default.createElement(
+										'div',
+										{ className: 'well well-lg nobottommargin' },
+										_react2.default.createElement(
+											'form',
+											{ id: 'login-form', name: 'login-form', className: 'nobottommargin', action: '#', method: 'post' },
+											_react2.default.createElement(
+												'h3',
+												null,
+												'Free to Join'
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'col_full' },
+												_react2.default.createElement(
+													'label',
+													{ 'for': 'login-form-username' },
+													'Username:'
+												),
+												_react2.default.createElement('input', { type: 'text', id: 'login-form-username', name: 'login-form-username', value: '', className: 'required form-control input-block-level' })
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'col_full' },
+												_react2.default.createElement(
+													'label',
+													{ 'for': 'login-form-password' },
+													'Password:'
+												),
+												_react2.default.createElement('input', { type: 'password', id: 'login-form-password', name: 'login-form-password', value: '', className: 'required form-control input-block-level' })
+											),
+											_react2.default.createElement(
+												'div',
+												{ className: 'col_full nobottommargin' },
+												_react2.default.createElement(
+													'button',
+													{ className: 'button button-3d nomargin', id: 'login-form-submit', name: 'login-form-submit', value: 'login' },
+													'Login'
+												),
+												_react2.default.createElement(
+													'a',
+													{ href: '#', className: 'fright' },
+													'Forgot Password?'
+												)
+											)
+										)
+									)
+								)
 							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ id: 'posts', className: 'events small-thumbs' },
-							list
 						)
-					),
-					_react2.default.createElement(
-						'h3',
-						null,
-						'Add Community'
-					),
-					_react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'name', name: 'name', placeholder: 'Name' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'address', name: 'address', placeholder: 'Address' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'city', name: 'city', placeholder: 'City' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'state', name: 'state', placeholder: 'State' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement(
-						'button',
-						{ onClick: this.addCommunity },
-						'Add'
 					)
 				);
 			}
@@ -24374,6 +24428,10 @@
 	
 	var _api2 = _interopRequireDefault(_api);
 	
+	var _Nav = __webpack_require__(213);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24464,6 +24522,7 @@
 				return _react2.default.createElement(
 					'div',
 					null,
+					_react2.default.createElement(_Nav2.default, null),
 					_react2.default.createElement(
 						'h2',
 						null,
@@ -24535,6 +24594,10 @@
 	
 	var _reactRedux = __webpack_require__(196);
 	
+	var _Nav = __webpack_require__(213);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24598,6 +24661,7 @@
 				return _react2.default.createElement(
 					'div',
 					null,
+					_react2.default.createElement(_Nav2.default, null),
 					'This is the Account Page!',
 					_react2.default.createElement(
 						'h1',
@@ -24646,6 +24710,10 @@
 	var _api = __webpack_require__(170);
 	
 	var _api2 = _interopRequireDefault(_api);
+	
+	var _Nav = __webpack_require__(213);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24698,6 +24766,7 @@
 				return _react2.default.createElement(
 					'div',
 					null,
+					_react2.default.createElement(_Nav2.default, null),
 					_react2.default.createElement(
 						'h2',
 						null,

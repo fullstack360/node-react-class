@@ -3,6 +3,7 @@ import api from '../../utils/api'
 import store from '../../stores/store'
 import actions from '../../actions/actions'
 import { connect } from 'react-redux'
+import Nav from '../../components/Nav'
 
 class Account extends Component {
 
@@ -49,6 +50,7 @@ class Account extends Component {
 	render(){
 		return (
 			<div>
+				<Nav />
 				This is the Account Page!
 				<h1>{this.props.currentUser.firstName} {this.props.currentUser.lastName}</h1>
 				<a onClick={this.logout} href="#">Logout</a>

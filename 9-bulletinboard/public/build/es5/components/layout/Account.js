@@ -22,6 +22,8 @@ var store = _interopRequire(require("../../stores/store"));
 var actions = _interopRequire(require("../../actions/actions"));
 
 var connect = require("react-redux").connect;
+var Nav = _interopRequire(require("../../components/Nav"));
+
 var Account = (function (Component) {
 	function Account(props, context) {
 		_classCallCheck(this, Account);
@@ -79,6 +81,7 @@ var Account = (function (Component) {
 				return React.createElement(
 					"div",
 					null,
+					React.createElement(Nav, null),
 					"This is the Account Page!",
 					React.createElement(
 						"h1",

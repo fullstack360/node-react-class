@@ -24,6 +24,8 @@ var actions = _interopRequire(require("../actions/actions"));
 var connect = require("react-redux").connect;
 var CommunityPreview = _interopRequire(require("../components/CommunityPreview"));
 
+var Nav = _interopRequire(require("../components/Nav"));
+
 var Communities = (function (Component) {
 	function Communities(props, context) {
 		_classCallCheck(this, Communities);
@@ -94,42 +96,98 @@ var Communities = (function (Component) {
 
 				return React.createElement(
 					"div",
-					{ className: "container clearfix" },
+					null,
+					React.createElement(Nav, null),
 					React.createElement(
-						"div",
-						{ className: "col_three_fifth bothsidebar nobottommargin" },
+						"section",
+						{ id: "slider", style: { background: "url(\"/images/nyc.jpg\") center", overflow: "visible" }, "data-height-lg": "450", "data-height-md": "450", "data-height-sm": "600", "data-height-xs": "600", "data-height-xxs": "600" },
+						React.createElement("br", null)
+					),
+					React.createElement(
+						"section",
+						{ id: "content" },
 						React.createElement(
 							"div",
-							{ className: "fancy-title title-border" },
+							{ className: "content-wrap" },
 							React.createElement(
-								"h3",
-								null,
-								"Communities"
+								"div",
+								{ className: "container clearfix" },
+								React.createElement(
+									"div",
+									{ className: "col_three_fifth bothsidebar nobottommargin" },
+									React.createElement(
+										"div",
+										{ className: "fancy-title title-border" },
+										React.createElement(
+											"h3",
+											null,
+											"Communities"
+										)
+									),
+									React.createElement(
+										"div",
+										{ id: "posts", className: "events small-thumbs" },
+										list
+									)
+								),
+								React.createElement(
+									"h3",
+									null,
+									"Sign Up"
+								),
+								React.createElement(
+									"div",
+									{ className: "col_one_third nobottommargin" },
+									React.createElement(
+										"div",
+										{ className: "well well-lg nobottommargin" },
+										React.createElement(
+											"form",
+											{ id: "login-form", name: "login-form", className: "nobottommargin", action: "#", method: "post" },
+											React.createElement(
+												"h3",
+												null,
+												"Free to Join"
+											),
+											React.createElement(
+												"div",
+												{ className: "col_full" },
+												React.createElement(
+													"label",
+													{ "for": "login-form-username" },
+													"Username:"
+												),
+												React.createElement("input", { type: "text", id: "login-form-username", name: "login-form-username", value: "", className: "required form-control input-block-level" })
+											),
+											React.createElement(
+												"div",
+												{ className: "col_full" },
+												React.createElement(
+													"label",
+													{ "for": "login-form-password" },
+													"Password:"
+												),
+												React.createElement("input", { type: "password", id: "login-form-password", name: "login-form-password", value: "", className: "required form-control input-block-level" })
+											),
+											React.createElement(
+												"div",
+												{ className: "col_full nobottommargin" },
+												React.createElement(
+													"button",
+													{ className: "button button-3d nomargin", id: "login-form-submit", name: "login-form-submit", value: "login" },
+													"Login"
+												),
+												React.createElement(
+													"a",
+													{ href: "#", className: "fright" },
+													"Forgot Password?"
+												)
+											)
+										)
+									)
+								)
 							)
-						),
-						React.createElement(
-							"div",
-							{ id: "posts", className: "events small-thumbs" },
-							list
 						)
-					),
-					React.createElement(
-						"h3",
-						null,
-						"Add Community"
-					),
-					React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "name", name: "name", placeholder: "Name" }),
-					React.createElement("br", null),
-					React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "address", name: "address", placeholder: "Address" }),
-					React.createElement("br", null),
-					React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "city", name: "city", placeholder: "City" }),
-					React.createElement("br", null),
-					React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "state", name: "state", placeholder: "State" }),
-					React.createElement("br", null),
-					React.createElement(
-						"button",
-						{ onClick: this.addCommunity },
-						"Add"
 					)
 				);
 			},

@@ -17,6 +17,8 @@ var React = _interopRequire(_react);
 var Component = _react.Component;
 var api = _interopRequire(require("../../utils/api"));
 
+var Nav = _interopRequire(require("../../components/Nav"));
+
 var Community = (function (Component) {
 	function Community(props, context) {
 		_classCallCheck(this, Community);
@@ -60,6 +62,7 @@ var Community = (function (Component) {
 				return React.createElement(
 					"div",
 					null,
+					React.createElement(Nav, null),
 					React.createElement(
 						"h2",
 						null,

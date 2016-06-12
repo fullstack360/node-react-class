@@ -4,6 +4,8 @@ import store from '../stores/store'
 import actions from '../actions/actions'
 import { connect } from 'react-redux'
 import CommunityPreview from '../components/CommunityPreview'
+import Nav from '../components/Nav'
+
 
 class Communities extends Component {
 
@@ -64,31 +66,56 @@ class Communities extends Component {
 		})
 
 		return (
-			<div className="container clearfix">
+			<div>
+				<Nav />
+		        <section id="slider" style={{background: 'url("/images/nyc.jpg") center', overflow:'visible'}} data-height-lg="450" data-height-md="450" data-height-sm="600" data-height-xs="600" data-height-xxs="600">
+		            <br />
+		        </section>
 
+		        <section id="content">
+		            <div className="content-wrap">
+						<div className="container clearfix">
 
+							<div className="col_three_fifth bothsidebar nobottommargin">
+			                    <div className="fancy-title title-border">
+			                        <h3>Communities</h3>
+			                    </div>
 
+			                    <div id="posts" className="events small-thumbs">
+									{list}
+			                    </div>
+			                </div>
 
-				<div className="col_three_fifth bothsidebar nobottommargin">
-                    <div className="fancy-title title-border">
-                        <h3>Communities</h3>
-                    </div>
+							<h3>Sign Up</h3>
 
-                    <div id="posts" className="events small-thumbs">
-						{list}
-                    </div>
-                </div>
+		                    <div className="col_one_third nobottommargin">
 
-				<h3>Add Community</h3>
-				<input onChange={this.updateNewCommunity} type="text" id="name" name="name" placeholder="Name" /><br />
-				<input onChange={this.updateNewCommunity} type="text" id="address" name="address" placeholder="Address" /><br />
-				<input onChange={this.updateNewCommunity} type="text" id="city" name="city" placeholder="City" /><br />
-				<input onChange={this.updateNewCommunity} type="text" id="state" name="state" placeholder="State" /><br />
-				<button onClick={this.addCommunity}>Add</button>
+								<div className="well well-lg nobottommargin">
+		                            <form id="login-form" name="login-form" className="nobottommargin" action="#" method="post">
+		                                <h3>Free to Join</h3>
+		                                <div className="col_full">
+		                                    <label for="login-form-username">Username:</label>
+		                                    <input type="text" id="login-form-username" name="login-form-username" value="" className="required form-control input-block-level" />
+		                                </div>
 
+		                                <div className="col_full">
+		                                    <label for="login-form-password">Password:</label>
+		                                    <input type="password" id="login-form-password" name="login-form-password" value="" className="required form-control input-block-level" />
+		                                </div>
+
+		                                <div className="col_full nobottommargin">
+		                                    <button className="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+		                                    <a href="#" className="fright">Forgot Password?</a>
+		                                </div>
+		                            </form>
+		                        </div>
+		                    </div>
+
+						</div>
+		            </div>
+		        </section>
 
 			</div>
-
 		)
 	}
 }

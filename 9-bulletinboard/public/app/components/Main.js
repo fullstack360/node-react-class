@@ -29,12 +29,6 @@ class Main extends Component {
 
 		return (
 			<div>
-				<Nav />
-
-		        <section id="slider" style={{background: 'url("/images/nyc.jpg") center', overflow:'visible'}} data-height-lg="450" data-height-md="450" data-height-sm="600" data-height-xs="600" data-height-xxs="600">
-		            <br />
-		        </section>
-
 
 				{ content }
 

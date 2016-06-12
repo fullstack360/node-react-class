@@ -57,12 +57,6 @@ var Main = (function (Component) {
 				return React.createElement(
 					"div",
 					null,
-					React.createElement(Nav, null),
-					React.createElement(
-						"section",
-						{ id: "slider", style: { background: "url(\"/images/nyc.jpg\") center", overflow: "visible" }, "data-height-lg": "450", "data-height-md": "450", "data-height-sm": "600", "data-height-xs": "600", "data-height-xxs": "600" },
-						React.createElement("br", null)
-					),
 					content,
 					React.createElement(Footer, null)
 				);

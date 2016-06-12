@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import api from '../../utils/api'
+import Nav from '../../components/Nav'
+
 
 class Community extends Component {
 
@@ -36,6 +38,7 @@ class Community extends Component {
 	render(){
 		return (
 			<div>
+				<Nav />
 				<h2>{this.state.community.name}</h2>
 				<ol>
 					<li>Post</li>

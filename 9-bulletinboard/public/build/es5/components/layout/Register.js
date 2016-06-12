@@ -17,6 +17,8 @@ var React = _interopRequire(_react);
 var Component = _react.Component;
 var api = _interopRequire(require("../../utils/api"));
 
+var Nav = _interopRequire(require("../../components/Nav"));
+
 var Register = (function (Component) {
 	function Register(props, context) {
 		_classCallCheck(this, Register);
@@ -105,6 +107,7 @@ var Register = (function (Component) {
 				return React.createElement(
 					"div",
 					null,
+					React.createElement(Nav, null),
 					React.createElement(
 						"h2",
 						null,
