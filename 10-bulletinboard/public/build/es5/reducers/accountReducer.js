@@ -25,7 +25,6 @@ module.exports = function (_x, action) {
 			newState.currentUser = action.user;
 			return newState;
 
-
 		default:
 			return state;
 

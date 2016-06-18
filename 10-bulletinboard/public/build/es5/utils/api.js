@@ -27,23 +27,20 @@ module.exports = {
 	handlePost: function (endpoint, body, completion) {
 		superagent.post(endpoint).send(body).set("Accept", "application/json").end(function (err, res) {
 			if (err) {
+				// server error
 				if (completion != null) completion(err, null);
 
 				return;
 			}
-			// else {
-			// 	if (completion != null)
-			//    		completion(null, res.body)
-			// }
 
 			if (completion != null) {
 				if (res.body.confirmation == "success") {
 					completion(null, res.body);
 				} else {
+					// api error
 					completion({ message: res.body.message }, null);
 				}
 			}
-
 		});
 	},
 

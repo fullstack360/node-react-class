@@ -64,7 +64,7 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _reactRedux = __webpack_require__(196);
+	var _reactRedux = __webpack_require__(197);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -20438,23 +20438,23 @@
 	
 	var _Communities2 = _interopRequireDefault(_Communities);
 	
-	var _Register = __webpack_require__(211);
+	var _Register = __webpack_require__(212);
 	
 	var _Register2 = _interopRequireDefault(_Register);
 	
-	var _Account = __webpack_require__(212);
+	var _Account = __webpack_require__(213);
 	
 	var _Account2 = _interopRequireDefault(_Account);
 	
-	var _Community = __webpack_require__(213);
+	var _Community = __webpack_require__(214);
 	
 	var _Community2 = _interopRequireDefault(_Community);
 	
-	var _Nav = __webpack_require__(210);
+	var _Nav = __webpack_require__(211);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
-	var _Footer = __webpack_require__(214);
+	var _Footer = __webpack_require__(215);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -20531,17 +20531,17 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _actions = __webpack_require__(195);
+	var _actions = __webpack_require__(196);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
-	var _reactRedux = __webpack_require__(196);
+	var _reactRedux = __webpack_require__(197);
 	
-	var _CommunityPreview = __webpack_require__(209);
+	var _CommunityPreview = __webpack_require__(210);
 	
 	var _CommunityPreview2 = _interopRequireDefault(_CommunityPreview);
 	
-	var _Nav = __webpack_require__(210);
+	var _Nav = __webpack_require__(211);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -20768,19 +20768,17 @@
 		handlePost: function handlePost(endpoint, body, completion) {
 			_superagent2.default.post(endpoint).send(body).set('Accept', 'application/json').end(function (err, res) {
 				if (err) {
+					// server error
 					if (completion != null) completion(err, null);
 	
 					return;
 				}
-				// else {
-				// 	if (completion != null)
-				//    		completion(null, res.body)
-				// }
 	
 				if (completion != null) {
 					if (res.body.confirmation == 'success') {
 						completion(null, res.body);
 					} else {
+						// api error
 						completion({ message: res.body.message }, null);
 					}
 				}
@@ -22421,12 +22419,17 @@
 	
 	var _accountReducer2 = _interopRequireDefault(_accountReducer);
 	
+	var _postReducer = __webpack_require__(195);
+	
+	var _postReducer2 = _interopRequireDefault(_postReducer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// Combine Reducers
 	var reducers = (0, _redux.combineReducers)({
 	    communityReducer: _communityReducer2.default,
-	    accountReducer: _accountReducer2.default
+	    accountReducer: _accountReducer2.default,
+	    postReducer: _postReducer2.default
 	});
 	
 	// Create Store
@@ -23367,7 +23370,10 @@
 		COMMUNITIES_RECEIVED: 'COMMUNITIES_RECEIVED',
 		COMMUNITY_CREATED: 'COMMUNITY_CREATED',
 	
-		CURRENT_USER_RECEIVED: 'CURRENT_USER_RECEIVED'
+		CURRENT_USER_RECEIVED: 'CURRENT_USER_RECEIVED',
+	
+		POSTS_RECEIVED: 'POSTS_RECEIVED',
+		POST_CREATED: 'POST_CREATED'
 	
 	};
 
@@ -23425,6 +23431,61 @@
 		value: true
 	});
 	
+	exports.default = function () {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+		var action = arguments[1];
+	
+	
+		switch (action.type) {
+			case _constants2.default.POSTS_RECEIVED:
+				var posts = action.posts;
+				//			console.log('POSTS_RECEIVED: '+JSON.stringify(posts))
+				var newState = Object.assign({}, state);
+	
+				var array = [];
+				for (var i = 0; i < posts.length; i++) {
+					var post = posts[i];
+					array.push(post);
+				}
+	
+				newState['postsArray'] = array;
+				return newState;
+	
+			case _constants2.default.POST_CREATED:
+				var newState = Object.assign({}, state);
+				var array = Object.assign([], newState.postsArray);
+				array.push(action.post);
+				newState['postsArray'] = array;
+	
+				return newState;
+	
+			default:
+				return state;
+	
+		}
+	};
+	
+	var _constants = __webpack_require__(193);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var initialState = {
+		posts: {},
+		postsArray: []
+	};
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
 	var _constants = __webpack_require__(193);
 	
 	var _constants2 = _interopRequireDefault(_constants);
@@ -23447,6 +23508,20 @@
 			};
 		},
 	
+		postsReceived: function postsReceived(posts) {
+			return {
+				type: _constants2.default.POSTS_RECEIVED,
+				posts: posts
+			};
+		},
+	
+		postCreated: function postCreated(post) {
+			return {
+				type: _constants2.default.POST_CREATED,
+				post: post
+			};
+		},
+	
 		currentUserReceived: function currentUserReceived(user) {
 			return {
 				type: _constants2.default.CURRENT_USER_RECEIVED,
@@ -23457,7 +23532,7 @@
 	};
 
 /***/ },
-/* 196 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23465,11 +23540,11 @@
 	exports.__esModule = true;
 	exports.connect = exports.Provider = undefined;
 	
-	var _Provider = __webpack_require__(197);
+	var _Provider = __webpack_require__(198);
 	
 	var _Provider2 = _interopRequireDefault(_Provider);
 	
-	var _connect = __webpack_require__(200);
+	var _connect = __webpack_require__(201);
 	
 	var _connect2 = _interopRequireDefault(_connect);
 	
@@ -23479,7 +23554,7 @@
 	exports.connect = _connect2["default"];
 
 /***/ },
-/* 197 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23489,11 +23564,11 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(198);
+	var _storeShape = __webpack_require__(199);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _warning = __webpack_require__(199);
+	var _warning = __webpack_require__(200);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -23563,7 +23638,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23579,7 +23654,7 @@
 	});
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23608,7 +23683,7 @@
 	}
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23620,31 +23695,31 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(198);
+	var _storeShape = __webpack_require__(199);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _shallowEqual = __webpack_require__(201);
+	var _shallowEqual = __webpack_require__(202);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
-	var _wrapActionCreators = __webpack_require__(202);
+	var _wrapActionCreators = __webpack_require__(203);
 	
 	var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 	
-	var _warning = __webpack_require__(199);
+	var _warning = __webpack_require__(200);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _isPlainObject = __webpack_require__(203);
+	var _isPlainObject = __webpack_require__(204);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _hoistNonReactStatics = __webpack_require__(207);
+	var _hoistNonReactStatics = __webpack_require__(208);
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
-	var _invariant = __webpack_require__(208);
+	var _invariant = __webpack_require__(209);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
@@ -24007,7 +24082,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24038,7 +24113,7 @@
 	}
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24055,12 +24130,12 @@
 	}
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getPrototype = __webpack_require__(204),
-	    isHostObject = __webpack_require__(205),
-	    isObjectLike = __webpack_require__(206);
+	var getPrototype = __webpack_require__(205),
+	    isHostObject = __webpack_require__(206),
+	    isObjectLike = __webpack_require__(207);
 	
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -24131,7 +24206,7 @@
 
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports) {
 
 	/* Built-in method references for those with the same name as other `lodash` methods. */
@@ -24152,7 +24227,7 @@
 
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports) {
 
 	/**
@@ -24178,7 +24253,7 @@
 
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports) {
 
 	/**
@@ -24213,7 +24288,7 @@
 
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports) {
 
 	/**
@@ -24269,7 +24344,7 @@
 
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24327,7 +24402,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24437,10 +24512,10 @@
 	exports.default = CommunityPreview;
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -24451,6 +24526,20 @@
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(197);
+	
+	var _api = __webpack_require__(170);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	var _store = __webpack_require__(177);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _actions = __webpack_require__(196);
+	
+	var _actions2 = _interopRequireDefault(_actions);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24463,87 +24552,98 @@
 	var Nav = function (_Component) {
 		_inherits(Nav, _Component);
 	
-		function Nav() {
+		function Nav(props, context) {
 			_classCallCheck(this, Nav);
 	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Nav).apply(this, arguments));
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Nav).call(this, props, context));
 		}
 	
 		_createClass(Nav, [{
-			key: "render",
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				_api2.default.handleGet('/account/currentuser', null, function (err, response) {
+					if (err) {
+						return;
+					}
+	
+					_store2.default.dispatch(_actions2.default.currentUserReceived(response.user));
+				});
+			}
+		}, {
+			key: 'render',
 			value: function render() {
 				var navClass = this.props.transparent == "yes" ? "transparent-header dark" : "dark";
 	
 				return _react2.default.createElement(
-					"header",
-					{ id: "header", className: navClass },
+					'header',
+					{ id: 'header', className: navClass },
 					_react2.default.createElement(
-						"div",
-						{ id: "header-wrap" },
+						'div',
+						{ id: 'header-wrap' },
 						_react2.default.createElement(
-							"div",
-							{ className: "container clearfix" },
+							'div',
+							{ className: 'container clearfix' },
 							_react2.default.createElement(
-								"div",
-								{ id: "primary-menu-trigger" },
-								_react2.default.createElement("i", { className: "icon-reorder" })
+								'div',
+								{ id: 'primary-menu-trigger' },
+								_react2.default.createElement('i', { className: 'icon-reorder' })
 							),
 							_react2.default.createElement(
-								"div",
-								{ id: "logo" },
+								'div',
+								{ id: 'logo' },
 								_react2.default.createElement(
-									"a",
-									{ href: "/", className: "standard-logo", "data-dark-logo": "/images/logo-dark.png" },
-									_react2.default.createElement("img", { src: "/images/logo.png", alt: "Canvas Logo" })
+									'a',
+									{ href: '/', className: 'standard-logo', 'data-dark-logo': '/images/logo-dark.png' },
+									_react2.default.createElement('img', { src: '/images/logo.png', alt: 'Canvas Logo' })
 								),
 								_react2.default.createElement(
-									"a",
-									{ href: "/", className: "retina-logo", "data-dark-logo": "/images/logo-dark@2x.png" },
-									_react2.default.createElement("img", { src: "/images/logo@2x.png", alt: "Canvas Logo" })
+									'a',
+									{ href: '/', className: 'retina-logo', 'data-dark-logo': '/images/logo-dark@2x.png' },
+									_react2.default.createElement('img', { src: '/images/logo@2x.png', alt: 'Canvas Logo' })
 								)
 							),
 							_react2.default.createElement(
-								"nav",
-								{ id: "primary-menu" },
+								'nav',
+								{ id: 'primary-menu' },
 								_react2.default.createElement(
-									"ul",
+									'ul',
 									null,
 									_react2.default.createElement(
-										"li",
+										'li',
 										null,
 										_react2.default.createElement(
-											"a",
-											{ href: "/" },
+											'a',
+											{ href: '/' },
 											_react2.default.createElement(
-												"div",
+												'div',
 												null,
-												"Home"
+												'Home'
 											)
 										)
 									),
 									_react2.default.createElement(
-										"li",
+										'li',
 										null,
 										_react2.default.createElement(
-											"a",
-											{ href: "/register" },
+											'a',
+											{ href: '/register' },
 											_react2.default.createElement(
-												"div",
+												'div',
 												null,
-												"Register"
+												'Register'
 											)
 										)
 									),
 									_react2.default.createElement(
-										"li",
+										'li',
 										null,
 										_react2.default.createElement(
-											"a",
-											{ href: "/" },
+											'a',
+											{ href: '/' },
 											_react2.default.createElement(
-												"div",
+												'div',
 												null,
-												"Home"
+												this.props.currentUser.firstName
 											)
 										)
 									)
@@ -24558,10 +24658,16 @@
 		return Nav;
 	}(_react.Component);
 	
-	exports.default = Nav;
+	var stateToProps = function stateToProps(state) {
+		return {
+			currentUser: state.accountReducer.currentUser
+		};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(stateToProps)(Nav);
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24580,7 +24686,7 @@
 	
 	var _api2 = _interopRequireDefault(_api);
 	
-	var _Nav = __webpack_require__(210);
+	var _Nav = __webpack_require__(211);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -24717,7 +24823,7 @@
 	exports.default = Register;
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24740,13 +24846,13 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _actions = __webpack_require__(195);
+	var _actions = __webpack_require__(196);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
-	var _reactRedux = __webpack_require__(196);
+	var _reactRedux = __webpack_require__(197);
 	
-	var _Nav = __webpack_require__(210);
+	var _Nav = __webpack_require__(211);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -24844,7 +24950,7 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps)(Account);
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24859,17 +24965,17 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(196);
+	var _reactRedux = __webpack_require__(197);
 	
 	var _api = __webpack_require__(170);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
-	var _Nav = __webpack_require__(210);
+	var _Nav = __webpack_require__(211);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
-	var _actions = __webpack_require__(195);
+	var _actions = __webpack_require__(196);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
@@ -24893,11 +24999,16 @@
 	
 			var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Community).call(this, props, context));
 	
+			_this2.updatePost = _this2.updatePost.bind(_this2);
+			_this2.submitPost = _this2.submitPost.bind(_this2);
+			_this2.fetchPosts = _this2.fetchPosts.bind(_this2);
 			_this2.state = {
-				community: {
-					name: ''
+				post: {
+					title: '',
+					text: '',
+					profile: '',
+					community: ''
 				}
-	
 			};
 			return _this2;
 		}
@@ -24915,23 +25026,93 @@
 	
 					var results = response.results;
 					_store2.default.dispatch(_actions2.default.communitiesReceived(results));
+					_this.fetchPosts();
+				});
+			}
+		}, {
+			key: 'fetchPosts',
+			value: function fetchPosts() {
+				if (this.props.community.id == null) return;
 	
-					//			var community = results[0]
-					// _this.setState({
-					// 	community: community
-					// })
+				var endpoint = '/api/post?community=' + this.props.community.id;
+				_api2.default.handleGet(endpoint, null, function (err, response) {
+					if (err) {
+						alert(err.message);
+						return;
+					}
+	
+					// console.log('FETCH POSTS: '+JSON.stringify(response.results))
+					_store2.default.dispatch(_actions2.default.postsReceived(response.results));
+				});
+			}
+		}, {
+			key: 'updatePost',
+			value: function updatePost(event) {
+				var updatedPost = Object.assign({}, this.state.post); // YES
+				updatedPost[event.target.id] = event.target.value;
+				this.setState({
+					post: updatedPost
+				});
+			}
+		}, {
+			key: 'submitPost',
+			value: function submitPost(event) {
+				if (this.props.currentUser.id == null) {
+					// not logged in
+					alert('Please log in to submit a post.');
+					return;
+				}
+	
+				var newPost = Object.assign({}, this.state.post);
+				newPost['community'] = this.props.community.id;
+				newPost['profile'] = this.props.currentUser.id;
+	
+				var _this = this;
+				_api2.default.handlePost('/api/post', newPost, function (err, response) {
+					if (err) {
+						alert('ERROR: ' + err);
+						return;
+					}
+	
+					_this.setState({
+						post: {
+							title: '',
+							text: '',
+							profile: '',
+							community: ''
+						}
+					});
+	
+					_store2.default.dispatch(_actions2.default.postCreated(response.result));
 				});
 			}
 		}, {
 			key: 'render',
 			value: function render() {
+				var postList = this.props.posts.map(function (post, i) {
+					return _react2.default.createElement(
+						'a',
+						{ key: post.id, href: '#', className: 'list-group-item' },
+						_react2.default.createElement(
+							'h4',
+							{ className: 'list-group-item-heading' },
+							post.title
+						),
+						_react2.default.createElement(
+							'p',
+							{ className: 'list-group-item-text' },
+							post.text
+						)
+					);
+				});
+	
 				return _react2.default.createElement(
 					'div',
 					null,
 					_react2.default.createElement(_Nav2.default, { transparent: 'no' }),
 					_react2.default.createElement(
 						'section',
-						{ id: 'content' },
+						{ id: 'content', style: { background: '#f9f9f9' } },
 						_react2.default.createElement(
 							'div',
 							{ className: 'content-wrap' },
@@ -24944,53 +25125,22 @@
 									_react2.default.createElement(
 										'h4',
 										null,
-										this.state.community.name
+										this.props.community.name
 									),
+									_react2.default.createElement('input', { onChange: this.updatePost, id: 'title', placeholder: 'Post Title', className: 'form-control', type: 'text' }),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement('textarea', { onChange: this.updatePost, id: 'text', placeholder: 'Post Text', className: 'form-control' }),
+									_react2.default.createElement('br', null),
+									_react2.default.createElement(
+										'button',
+										{ onClick: this.submitPost, className: 'btn btn-success' },
+										'Add Post'
+									),
+									_react2.default.createElement('hr', { style: { borderTop: '1px solid #ddd' } }),
 									_react2.default.createElement(
 										'div',
 										{ className: 'list-group' },
-										_react2.default.createElement(
-											'a',
-											{ href: '#', className: 'list-group-item' },
-											_react2.default.createElement(
-												'h4',
-												{ className: 'list-group-item-heading' },
-												'List group item heading'
-											),
-											_react2.default.createElement(
-												'p',
-												{ className: 'list-group-item-text' },
-												'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.'
-											)
-										),
-										_react2.default.createElement(
-											'a',
-											{ href: '#', className: 'list-group-item' },
-											_react2.default.createElement(
-												'h4',
-												{ className: 'list-group-item-heading' },
-												'List group item heading'
-											),
-											_react2.default.createElement(
-												'p',
-												{ className: 'list-group-item-text' },
-												'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.'
-											)
-										),
-										_react2.default.createElement(
-											'a',
-											{ href: '#', className: 'list-group-item' },
-											_react2.default.createElement(
-												'h4',
-												{ className: 'list-group-item-heading' },
-												'List group item heading'
-											),
-											_react2.default.createElement(
-												'p',
-												{ className: 'list-group-item-text' },
-												'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.'
-											)
-										)
+										postList
 									)
 								)
 							)
@@ -25007,14 +25157,16 @@
 		var communitiesArray = state.communityReducer.communitiesArray;
 	
 		return {
-			community: communitiesArray.length == 0 ? { name: '' } : communitiesArray[0]
+			community: communitiesArray.length == 0 ? { name: '' } : communitiesArray[0],
+			posts: state.postReducer.postsArray,
+			currentUser: state.accountReducer.currentUser
 		};
 	};
 	
 	exports.default = (0, _reactRedux.connect)(stateToProps)(Community);
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

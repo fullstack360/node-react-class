@@ -19,7 +19,6 @@ export default function(state = initialState, action){
 			newState['currentUser'] = action.user
 			return newState
 
-
 		default:
 			return state
 

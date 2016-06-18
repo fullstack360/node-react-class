@@ -33,28 +33,23 @@ export default {
 		.send(body)
 		.set('Accept', 'application/json')
 		.end(function(err, res){
-			if (err){ 
+			if (err){ // server error
 				if (completion != null)
 					completion(err, null)
 
 				return
 			}
-			// else { 
-			// 	if (completion != null)
-		 //    		completion(null, res.body)
-			// }
 
 			if (completion != null){
 				if (res.body.confirmation == 'success'){
 		    		completion(null, res.body)
 				}
-				else {
+				else {  // api error
 		    		completion({message:res.body.message}, null)
 				}
 			}
 
-
-		});
+		})
 	},
 
 	handlePut: function(endpoint, body, completion){
